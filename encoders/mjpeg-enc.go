@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"image"
 	"image/jpeg"
+	"screenrec/logger"
 	"strings"
-	"vnc2webm/logger"
 
 	"github.com/icza/mjpeg"
 )
