@@ -7,25 +7,25 @@ import (
 	"io"
 )
 
-func encodePPMFast(w io.Writer, m image.Image) error {
+func encodePPM(w io.Writer, img image.Image) error {
 	maxvalue := 255
-	b := m.Bounds()
-	// write header
-	_, err := fmt.Fprintf(w, "P6\n%d %d\n%d\n", b.Dx(), b.Dy(), maxvalue)
+	size := img.Bounds()
+	// write ppm header
+	_, err := fmt.Fprintf(w, "P6\n%d %d\n%d\n", size.Dx(), size.Dy(), maxvalue)
 	if err != nil {
 		return err
 	}
 
-	// write raster
-	cm := color.RGBAModel
-	row := make([]uint8, b.Dx()*3)
-	for y := b.Min.Y; y < b.Max.Y; y++ {
+	// write the bitmap
+	colModel := color.RGBAModel
+	row := make([]uint8, size.Dx()*3)
+	for y := size.Min.Y; y < size.Max.Y; y++ {
 		i := 0
-		for x := b.Min.X; x < b.Max.X; x++ {
-			c := cm.Convert(m.At(x, y)).(color.RGBA)
-			row[i] = c.R
-			row[i+1] = c.G
-			row[i+2] = c.B
+		for x := size.Min.X; x < size.Max.X; x++ {
+			color := colModel.Convert(img.At(x, y)).(color.RGBA)
+			row[i] = color.R
+			row[i+1] = color.G
+			row[i+2] = color.B
 			i += 3
 		}
 		if _, err := w.Write(row); err != nil {

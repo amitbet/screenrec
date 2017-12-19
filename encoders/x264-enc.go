@@ -74,7 +74,7 @@ func (enc *X264ImageEncoder) Run() {
 	}
 }
 func (enc *X264ImageEncoder) Encode(img image.Image) {
-	err := encodePPMFast(enc.input, img)
+	err := encodePPM(enc.input, img)
 	if err != nil {
 		logger.Error("error while encoding image:", err)
 	}

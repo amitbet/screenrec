@@ -74,7 +74,7 @@ func (enc *DV8ImageEncoder) Run() {
 	}
 }
 func (enc *DV8ImageEncoder) Encode(img image.Image) {
-	err := encodePPMFast(enc.input, img)
+	err := encodePPM(enc.input, img)
 	if err != nil {
 		logger.Error("error while encoding image:", err)
 	}
