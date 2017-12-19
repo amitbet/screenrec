@@ -1,5 +1,5 @@
 # ScreenRec
-Simple cross-platform pure Go screen capturer. (tested on linux&windows&osx)
+Simple cross-platform pure Go screen recorder. (tested on linux&windows&osx)
 * screen capture routines now work on retina displayes as well - added scaling factor support.
 
 This project is actually an experiment to see how go integrates with native code & with piping data to ffmpeg via stdin.
